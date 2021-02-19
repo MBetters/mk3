@@ -5,8 +5,7 @@
 - [Install Git Bash](https://git-scm.com/downloadshttps://git-scm.com/downloads).
   - Make sure you check any checkboxes asking if you want to add `Git` to your `System PATH`.
 - Open PowerShell and run `Get-Command git`. The `Source` column should say something like `C:\Program Files\Git\cmd\git.exe`. If it doesn't then redo the first step, since you didn't install `Git` and add it to your `System PATH` properly.
-- Run `git clone `
-- `cd` into this directory (directory is another word for folder).
+- `cd` wherever you want to clone this repo, then run `git clone https://github.com/MBetters/mk3.git`, then `cd` into this repo (`cd mk3`).
 - Run `py -3 -m venv venv`
   - `py -3` means run Python 3
   - `-m venv` means run the [VirtualEnv](https://docs.python.org/3.8/library/venv.html) module
