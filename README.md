@@ -14,5 +14,10 @@
 - Close and reopen PowerShell.
 - `cd` into this directory, then run `code .`. This folder should open in VS Code.
 - Close PowerShell.
-- In VS Code, hit `Ctrl + Shift + Backtick` (the backtick key can be found to the left of the `1` key on your keyboard). That should open a new "Integrated Terminal" at the bottom of your VS Code window. The Integrated Terminal should automatically "activate" the `venv` VirtualEnv, which will prepend `(venv)` to the shell's prompt. This means commands like `python` will use `venv\Scripts\python.exe`. You can verify this by doing `where python`. The `venv`'s `python.exe` should be the first one on the list. The same thing should happen when you run `where pip`. Note that `pip` is just a Python package installer.
-- Upgrade your `venv`'s `pip` by running `python -m pip install --upgrade pip` in the Integrated Terminal.
+- In VS Code, hit `Ctrl + Shift + Backtick` (the backtick key can be found to the left of the `1` key on your keyboard). That should open a new "Integrated Terminal" at the bottom of your VS Code window.
+- The Integrated Terminal should have automatically "activated" the `venv` VirtualEnv, meaning you should see `(venv)` at the beginning of the terminal's prompt.
+  - **SIDENOTE 1**: This means commands like `python` will use `venv\Scripts\python.exe` instead of something like `C:\Python38\python.exe`. You can verify this by doing `where python` in the Integrated Terminal. The `venv`'s `python.exe` should be the first one on the list.
+  - **SIDENOTE 2**: The same thing should happen when you run `where pip`. Note that `pip` is just a Python package installer.
+  - **SIDENOTE 3**: From now on, run all commands for this project in the Integrated Terminal with `venv` activated. If you want to use PowerShell instead, then just remember to first `cd` into this repo's directory, then run `.\venv\Scripts\Activate.ps1`.
+- Upgrade `pip`: `python -m pip install --upgrade pip`].
+- Install all requirements: `pip install -r requirements.txt`
