@@ -1,16 +1,17 @@
 # This REPL (Read Eval Print Loop) Terminal runs on your computer
-# and sends commands to the CPX board in the robot.
+# and sends commands to the CPX board in the MK3 robot.
 # It's just for testing robot commands.
 
 import serial
 import sys
 
 com_connection = None
-com_port = 'COM5'
-baud_rate = 9600 # in bits / sec
 
 # NOTE: Change your COM string to be what you see in Device Manager.
 #       and make sure the baudrate matches double-clicked --> Port Settings.
+com_port = 'COM5'
+baud_rate = 9600 # in bits / sec
+
 try:
     # Try to open the COM port....
     com_connection = serial.Serial(com_port, baud_rate)
@@ -35,16 +36,25 @@ while True:
         print("open claw: Opens the claw")
         print("close claw: Closes the claw")
         print("quit: Quit this REPL Terminal")
+        print("red off: Turn off red LED blinking")
+        print("red on: Turn on red LED blinking")
+        print("terminate: Terminate the code running on the robot")
+        print("quit: Exit out of this REPL")
     elif action == "open claw":
-        # TODO: Send USB command "OPEN_CLAW" to the CPX board.
-        com_connection.write("OPEN_CLAW") # might need to make this a binary string like b'OPEN_CLAW\n\r'
+        com_connection.write(b"OPEN_CLAW")
     elif action == "close claw":
-        # TODO: Send USB command "CLOSE_CLAW" to the CPX board.
-        com_connection.write("CLOSE_CLAW") # b"OPEN_CLAW"
+        com_connection.write(b"CLOSE_CLAW")
+    elif action == "red off":
+        com_connection.write(b"RED_OFF")
+    elif action == "red on":
+        # TODO: There's a bug where if you do 'red off' then 'red on', it won't work. Can you solve it?
+        com_connection.write(b"RED_ON")
+    elif action == "terminate":
+        com_connection.write(b"TERMINATE")
     elif action == "quit":
         break
     # TODO: Read any new messages from the robot,
-    #       using the com_connection.
+    #       using function(s) from the com_connection object.
     #       Print those messages out here.
 
 print("Goodbye!")

@@ -19,5 +19,5 @@
   - **SIDENOTE 1**: This means commands like `python` will use `venv\Scripts\python.exe` instead of something like `C:\Python38\python.exe`. You can verify this by doing `where python` in the Integrated Terminal. The `venv`'s `python.exe` should be the first one on the list.
   - **SIDENOTE 2**: The same thing should happen when you run `where pip`. Note that `pip` is just a Python package installer.
   - **SIDENOTE 3**: From now on, run all commands for this project in the Integrated Terminal with `venv` activated. If you want to use PowerShell instead, then just remember to first `cd` into this repo's directory, then run `.\venv\Scripts\Activate.ps1`.
-- Upgrade `pip`: `python -m pip install --upgrade pip`].
+- Upgrade `pip`: `python -m pip install --upgrade pip`
 - Install all requirements: `pip install -r requirements.txt`
