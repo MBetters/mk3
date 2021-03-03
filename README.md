@@ -10,10 +10,9 @@
   - `py -3` means run Python 3
   - `-m venv` means run the [VirtualEnv](https://docs.python.org/3.8/library/venv.html) module
   - The `venv` at the end is the name of the VirtualEnv to create. Calling it `venv` isn't very creative since that's the name of the `venv` module, but it's clean.
+- Run PowerShell as an Administrator (by right-clicking it and clicking `Run as Administrator`), then run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted`. At the prompt, say `A` and hit Enter. This will allow `.\venv\Scripts\Activate.ps1` to run in PowerShell later.
 - [Install VS Code](https://code.visualstudio.com/download).
-- Close and reopen PowerShell.
-- `cd` into this directory, then run `code .`. This folder should open in VS Code.
-- Close PowerShell.
+- Open VS Code, do `File` --> `Open Folder...`, and navigate to the `mk3` folder and select it. VS Code should open this folder.
 - In VS Code, hit `Ctrl + Shift + Backtick` (the backtick key can be found to the left of the `1` key on your keyboard). That should open a new "Integrated Terminal" at the bottom of your VS Code window.
 - The Integrated Terminal should have automatically "activated" the `venv` VirtualEnv, meaning you should see `(venv)` at the beginning of the terminal's prompt.
   - **SIDENOTE 1**: This means commands like `python` will use `venv\Scripts\python.exe` instead of something like `C:\Python38\python.exe`. You can verify this by doing `where python` in the Integrated Terminal. The `venv`'s `python.exe` should be the first one on the list.
