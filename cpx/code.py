@@ -27,8 +27,7 @@ while True:
         time.sleep(0.02)
     if supervisor.runtime.serial_bytes_available:
         usb_message = input().strip()
-        print(f"Received USB Message: {usb_message}")
-        # TODO: This probably isn't the most reliable way to get stuff off USB. Find bugs with this.
+        print("Received USB Message: " + usb_message)
         next_action = usb_message
     # if next_action == "OPEN_CLAW":
     #     # TODO: Open the claw by sending the right
@@ -47,6 +46,6 @@ while True:
     elif next_action == "TERMINATE":
         break
     elif next_action != "":
-        print(f"INVALID COMMAND RECEIVED: {next_action}")
+        print("INVALID COMMAND RECEIVED: " + next_action)
 
 print("NO!!!! I WAS EXTERMINATED!!!!!!!!!")

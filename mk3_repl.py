@@ -2,6 +2,7 @@
 # and sends commands to the CPX board in the MK3 robot.
 # It's just for testing robot commands.
 
+import time
 import serial
 import sys
 
@@ -10,11 +11,12 @@ com_connection = None
 # NOTE: Change your COM string to be what you see in Device Manager.
 #       and make sure the baudrate matches double-clicked --> Port Settings.
 com_port = 'COM5'
-baud_rate = 9600 # in bits / sec
+baud_rate = 115200 # in bits / sec
+read_timeout = 1 # in secs
 
 try:
     # Try to open the COM port....
-    com_connection = serial.Serial(com_port, baud_rate)
+    com_connection = serial.Serial(port=com_port, baudrate=baud_rate, timeout=read_timeout)
 except serial.serialutil.SerialException:
     # ... but if it fails to open, then give the user some hints....
     print("Cannot connect to your robot over USB!!! Possible causes....")
@@ -41,21 +43,33 @@ while True:
         print("terminate: Terminate the code running on the robot")
         print("quit: Exit out of this REPL")
     elif action == "open claw":
-        com_connection.write(b"OPEN_CLAW")
+        num_bytes_written = com_connection.write(b"OPEN_CLAW\n\r")
+        if num_bytes_written != len("OPEN_CLAW\n\r"):
+            print("ERROR: Couldn't write the full command")
     elif action == "close claw":
-        com_connection.write(b"CLOSE_CLAW")
+        num_bytes_written = com_connection.write(b"CLOSE_CLAW\n\r")
+        if num_bytes_written != len("CLOSE_CLAW\n\r"):
+            print("ERROR: Couldn't write the full command")
     elif action == "red off":
-        com_connection.write(b"RED_OFF")
+        num_bytes_written = com_connection.write(b"RED_OFF\n\r")
+        if num_bytes_written != len("RED_OFF\n\r"):
+            print("ERROR: Couldn't write the full command")
     elif action == "red on":
         # TODO: There's a bug where if you do 'red off' then 'red on', it won't work. Can you solve it?
-        com_connection.write(b"RED_ON")
+        num_bytes_written = com_connection.write(b"RED_ON\n\r")
+        if num_bytes_written != len("RED_ON\n\r"):
+            print("ERROR: Couldn't write the full command")
     elif action == "terminate":
-        com_connection.write(b"TERMINATE")
+        num_bytes_written = com_connection.write(b"TERMINATE\n\r")
+        if num_bytes_written != len("TERMINATE\n\r"):
+            print("ERROR: Couldn't write the full command")
     elif action == "quit":
         break
-    # TODO: Read any new messages from the robot,
-    #       using function(s) from the com_connection object.
-    #       Print those messages out here.
+    # If you sent a command to the robot, then wait for it to flush.
+    if action not in ["help", "quit"]:
+        time.sleep(3)
+        all_bytes_from_robot = com_connection.read_all()
+        print(f"All bytes from MK3: {all_bytes_from_robot}")
 
 print("Goodbye!")
 
