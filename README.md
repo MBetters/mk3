@@ -6,8 +6,7 @@
   - Make sure you check any checkboxes asking if you want to add `Git` to your `System PATH`.
 - Open PowerShell and run `Get-Command git`. The `Source` column should say something like `C:\Program Files\Git\cmd\git.exe`. If it doesn't then redo the first step, since you didn't install `Git` and add it to your `System PATH` properly.
 - `cd` wherever you want to clone this repo, then run `git clone https://github.com/MBetters/mk3.git`, then `cd` into this repo (`cd mk3`).
-- Run `py -3 -m venv venv`
-  - `py -3` means run Python 3
+- Run `python -m venv venv`
   - `-m venv` means run the [VirtualEnv](https://docs.python.org/3.8/library/venv.html) module
   - The `venv` at the end is the name of the VirtualEnv to create. Calling it `venv` isn't very creative since that's the name of the `venv` module, but it's clean.
 - Run PowerShell as an Administrator (by right-clicking it and clicking `Run as Administrator`), then run `Set-ExecutionPolicy -ExecutionPolicy Unrestricted`. At the prompt, say `A` and hit Enter. This will allow `.\venv\Scripts\Activate.ps1` to run in PowerShell later.
