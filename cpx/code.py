@@ -43,7 +43,7 @@ while True:
         usb_message = input().strip()
         print("Received USB Message: " + usb_message)
         next_action = usb_message
-    if next_action == "OPEN_CLAW":
+    if next_action == "START_OPEN_CLAW":
         # TODO: Open the claw by sending the right
         #       electrical signal to the SG90 servo.
         #       Need to send a square wave with 20 ms period,
