@@ -75,7 +75,7 @@ while True:
         #       1.33-ish ms ON, and 18.67-ish ms OFF.
         servo_to_move = "claw_and_shoulder"
         next_action = None
-    elif next_action == "START_CLOSE_CLAW":
+    elif next_action == "STOP_CLOSE_CLAW":
         # TODO: Close the claw by sending the right
         #       electrical signal to the SG90 servo.
         #       Need to send a square wave with 20 ms period,
