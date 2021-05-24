@@ -41,13 +41,21 @@ while True:
         print("red on: Turn on red LED blinking")
         print("terminate: Terminate the code running on the robot")
         print("quit: Exit out of this REPL")
-    elif action == "open claw":
-        num_bytes_written = com_connection.write(b"OPEN_CLAW\n\r")
-        if num_bytes_written != len("OPEN_CLAW\n\r"):
+    elif action == "start open claw":
+        num_bytes_written = com_connection.write(b"START_OPEN_CLAW\n\r")
+        if num_bytes_written != len("START_OPEN_CLAW\n\r"):
             print("ERROR: Couldn't write the full command")
-    elif action == "close claw":
-        num_bytes_written = com_connection.write(b"CLOSE_CLAW\n\r")
-        if num_bytes_written != len("CLOSE_CLAW\n\r"):
+    elif action == "stop open claw":
+        num_bytes_written = com_connection.write(b"STOP_OPEN_CLAW\n\r")
+        if num_bytes_written != len("STOP_OPEN_CLAW\n\r"):
+            print("ERROR: Couldn't write the full command")
+    elif action == "start close claw":
+        num_bytes_written = com_connection.write(b"START_CLOSE_CLAW\n\r")
+        if num_bytes_written != len("START_CLOSE_CLAW\n\r"):
+            print("ERROR: Couldn't write the full command")
+    elif action == "stop close claw":
+        num_bytes_written = com_connection.write(b"STOP_CLOSE_CLAW\n\r")
+        if num_bytes_written != len("STOP_CLOSE_CLAW\n\r"):
             print("ERROR: Couldn't write the full command")
     elif action == "red off":
         num_bytes_written = com_connection.write(b"RED_OFF\n\r")
@@ -66,7 +74,7 @@ while True:
         break
     # If you sent a command to the robot, then wait for it to flush.
     if action not in ["help", "quit"]:
-        time.sleep(3)
+        time.sleep(1)
         all_bytes_from_robot = com_connection.read_all()
         print("All bytes from MK3:")
         print(all_bytes_from_robot)
