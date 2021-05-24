@@ -6,10 +6,9 @@ import time
 import serial
 import sys
 
-com_connection = None
-
 # NOTE: Change your COM string to be what you see in Device Manager.
 #       and make sure the baudrate matches double-clicked --> Port Settings.
+com_connection = None
 com_port = 'COM5'
 baud_rate = 115200 # in bits / sec
 read_timeout = 1 # in secs
@@ -30,6 +29,7 @@ except serial.serialutil.SerialException:
 
 # If we get to this point, then com_connection should not be equal to None!
 
+print("Do 'help' to ask for help!")
 prompt = ">>> "
 
 while True:
@@ -37,7 +37,6 @@ while True:
     if action == "help":
         print("open claw: Opens the claw")
         print("close claw: Closes the claw")
-        print("quit: Quit this REPL Terminal")
         print("red off: Turn off red LED blinking")
         print("red on: Turn on red LED blinking")
         print("terminate: Terminate the code running on the robot")
@@ -69,9 +68,10 @@ while True:
     if action not in ["help", "quit"]:
         time.sleep(3)
         all_bytes_from_robot = com_connection.read_all()
-        print(f"All bytes from MK3: {all_bytes_from_robot}")
-
-print("Goodbye!")
+        print("All bytes from MK3:")
+        print(all_bytes_from_robot)
 
 # Close the COM port. Although, I'm pretty sure this already gets called automatically when the script is done...
 com_connection.close()
+
+print("Goodbye!")

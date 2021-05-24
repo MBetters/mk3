@@ -32,9 +32,17 @@ while True:
         # Handle the left trigger
         if event.code == "ABS_Z" and event.state > 0:
             print("LT pressed")
-            # TODO: Send the robot USB commands to close the claw
+            # TODO AJ and Owen: Send the robot USB commands to close the claw
         elif event.code == "ABS_Z" and event.state == 0:
             print("LT not pressed")
+            # TODO: Send the robot USB command stop closing the claw
+            print(event.ev_type, event.code, event.state)
+        # Handle the right trigger
+        if event.code == "ABS_RZ" and event.state > 0:
+            print("RT pressed")
+            # TODO AJ and Owen: Send the robot USB commands to close the claw
+        elif event.code == "ABS_RZ" and event.state == 0:
+            print("RT not pressed")
             # TODO: Send the robot USB command stop closing the claw
             print(event.ev_type, event.code, event.state)
         # Likewise as the above section for the right trigger,
